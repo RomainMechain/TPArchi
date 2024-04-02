@@ -1,21 +1,27 @@
 <script>
 export default {
-  data: {
-    questionnaires : []
+  data() {
+    return {
+      questionnaires : []
+    };
   },
   methods: {
     affichQuestionnaires : function() {
       fetch('http://localhost:5000/quiz/api/v1.0/quiz')
       .then(response => response.json())
       .then(data => {
-        this.questionnaires = data;
+        this.questionnaires = [];
+        for (let i = 0; i < data.length; i++) {
+          this.questionnaires.push({name: data[i].name, url: data[i].url});
+        }
       });
     },
     afficheQuestions : function() {
         this.$emit('afficheQuest', {url: this.url});
     }
   },
-  emits: ['afficheQuest']
+  emits: ['afficheQuest'],
+  components: {Questionnaire}
 }
 
 import Questionnaire from './Questionnaire.vue';
