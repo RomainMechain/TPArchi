@@ -25,17 +25,12 @@ export default{
   </header>
   <div class="questionnaires">
     <h2>Questionnaires : </h2>
-    <Questionnaires>
-
-    </Questionnaires>
+    <Questionnaires></Questionnaires>
   </div>
   <div class="questions">
     <h2>Questions : </h2>
-    <!-- <Questions v-if="this.questions"></Questions> -->
   </div>
   <div class="operations">
-
-
   </div>
 </template>
 
