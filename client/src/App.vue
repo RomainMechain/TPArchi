@@ -6,6 +6,7 @@ let data={
   title:'Voici vos questionnaires',
   questions:false,
   urlQuest:"",
+  idQuest:"",
   operations:false,
 
 }
@@ -20,6 +21,7 @@ export default{
     afficherQuestions($event){
       this.questions=true;
       this.urlQuest=$event.url;
+      this.idQuest=$event.id;
       console.log($event);
     },
   }
@@ -37,7 +39,7 @@ export default{
   </div>
   <div class="questions">
     <h2>Questions : </h2>
-    <Questions v-if="this.questions" :url="this.urlQuest"></Questions>
+    <Questions v-if="this.questions" :url="this.urlQuest" :idQuestionnaire="this.idQuest"></Questions>
   </div>
   <div class="operations">
   </div>

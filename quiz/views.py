@@ -35,7 +35,7 @@ def add_question(id) :
     title = request.json['title']
     questionType = request.json['questionType']
     reponse = request.json['reponse']
-    if 'options' in request.json :
+    if questionType == "MultipleQuestion" :
         options = request.json['options']
         return jsonify(add_question_db(title, questionType, reponse, id, options))
     else :
