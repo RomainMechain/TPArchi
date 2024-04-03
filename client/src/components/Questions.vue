@@ -22,8 +22,12 @@ export default {
           fetch(data[i])
           .then(response2 => response2.json())
           .then(data2 => {
-            
-            this.questions.push({id: data2.id, url: data2.url,questionType: data2.questionType,reponse: data2.reponse,title: data2.title});
+            if (data2.questionType === 'MultipleQuestion') {
+              this.questions.push({id: data2.id, url: data2.url,questionType: data2.questionType,reponse: data2.reponse,title: data2.title, options: data2.options});
+            }
+            else {
+              this.questions.push({id: data2.id, url: data2.url,questionType: data2.questionType,reponse: data2.reponse,title: data2.title});
+            }
           }
       )}
       });
