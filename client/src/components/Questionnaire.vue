@@ -1,12 +1,13 @@
 <script>
  export default {
    props: {
-     name: String,
-     url: String,
+     questionnaire: Object
    },
-   methodes: {
+   methods: {
     afficheQuestions : function() {
-            this.$emit('afficheQuest', {url: this.url});
+        console.log(this.questionnaire.url);    
+        this.$emit('afficheQuest', {url: this.questionnaire.url});
+
         }
    },
    emits: ['afficheQuest']
@@ -15,6 +16,7 @@
 
 <template>
   <div>
-    <h1 @click="afficheQuestions">{{ name }}</h1>
+    <h1 @click="afficheQuestions">{{ questionnaire.name }}</h1>
+    
   </div>
 </template>

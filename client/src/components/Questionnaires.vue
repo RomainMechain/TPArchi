@@ -16,8 +16,9 @@ export default {
         }
       });
     },
-    afficheQuestions : function() {
-        this.$emit('afficheQuest', {url: this.url});
+    afficheQuestions : function($event) {
+      console.log(this.url);
+      this.$emit('afficheQuest', {url: $event.url});
     }
   },
   emits: ['afficheQuest'],
@@ -32,7 +33,7 @@ import Questionnaire from './Questionnaire.vue';
         <button @click="affichQuestionnaires">Afficher les questionnaires</button>
         <ul>
             <li v-for="quest in questionnaires">
-                <Questionnaire :name="quest.name" :url="quest.url" @afficheQuest="afficheQuestions"></Questionnaire>
+                <Questionnaire :questionnaire="quest" @afficheQuest="afficheQuestions"></Questionnaire>
             </li>
         </ul>
     </section>
