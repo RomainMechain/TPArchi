@@ -32,6 +32,15 @@ export default {
       )}
       });
     },
+    supprimerQuestion : function($event) {
+      fetch('http://localhost:5000/quiz/api/v1.0/quiz/question/'+$event.id, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.questions = this.questions.filter(question => question.id !== $event.id);
+      });
+    }
     
   },
 
@@ -46,7 +55,7 @@ import Question from './Question.vue';
       <button @click="affichQuestions">Afficher les questions</button>
         <ul>
             <li v-for="quest in questions">
-                <Question :question="quest"></Question>
+                <Question :question="quest" @supprQuest="supprimerQuestion"></Question>
             </li>
         </ul>
     </section>
