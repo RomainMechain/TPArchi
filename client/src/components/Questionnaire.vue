@@ -10,7 +10,8 @@
    },
    methods: {
     afficheQuestions : function() {
-            this.$emit('afficheQuest', {url: this.url});
+        console.log(this.questionnaire.url);    
+        this.$emit('afficheQuest', {url: this.questionnaire.url});
     },
     changeMod : function() {
       this.modEdit = !this.modEdit;
