@@ -42,7 +42,7 @@ import Question from './Question.vue';
       <button @click="affichQuestions">Afficher les questions</button>
         <ul>
             <li v-for="quest in questions">
-                <Question :name="quest.title"></Question>
+                <Question :question="quest"></Question>
             </li>
         </ul>
     </section>
