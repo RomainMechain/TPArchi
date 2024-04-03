@@ -2,7 +2,8 @@
 export default {
   data() {
     return {
-      questionnaires : []
+      questionnaires : [],
+      newQuestionnaire : ""
     };
   },
   methods: {
@@ -12,12 +13,44 @@ export default {
       .then(data => {
         this.questionnaires = [];
         for (let i = 0; i < data.length; i++) {
-          this.questionnaires.push({name: data[i].name, url: data[i].url});
+          this.questionnaires.push({name: data[i].name, url: data[i].url, id: data[i].id});
         }
       });
     },
     afficheQuestions : function() {
         this.$emit('afficheQuest', {url: this.url});
+    },
+    ajouterQuestionnaire : function() {
+      fetch('http://localhost:5000/quiz/api/v1.0/quiz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name: this.newQuestionnaire})
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.newQuestionnaire = "";
+        this.affichQuestionnaires();
+      });
+    },
+    editQuestionnaire : function($event) {
+      fetch('http://localhost:5000/quiz/api/v1.0/quiz/'+$event.id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name: $event.name})
+      })
+    },
+    supprimerQuestionnaire : function($event) {
+      fetch('http://localhost:5000/quiz/api/v1.0/quiz/'+$event.id, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.questionnaires = this.questionnaires.filter(questionnaire => questionnaire.id !== $event.id);
+      });
     }
   },
   emits: ['afficheQuest'],
@@ -32,8 +65,9 @@ import Questionnaire from './Questionnaire.vue';
         <button @click="affichQuestionnaires">Afficher les questionnaires</button>
         <ul>
             <li v-for="quest in questionnaires">
-                <Questionnaire :name="quest.name" :url="quest.url" @afficheQuest="afficheQuestions"></Questionnaire>
+                <Questionnaire :questionnaire="quest" @afficheQuest="afficheQuestions" @editQuest="editQuestionnaire" @supprQuest="supprimerQuestionnaire"></Questionnaire>
             </li>
         </ul>
+        <input type="text" v-model="newQuestionnaire" placeholder="Ajouter un nouveau questionnaire" @keyup.enter="ajouterQuestionnaire">
     </section>
 </template>
