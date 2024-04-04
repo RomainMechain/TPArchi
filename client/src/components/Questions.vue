@@ -12,7 +12,8 @@ export default {
   },
   props: {
     url: String,
-    idQuestionnaire: Number
+    idQuestionnaire: Number,
+    name: String
   },
   methods: {
     affichQuestions : function() {
@@ -95,6 +96,7 @@ import Question from './Question.vue';
 
 <template>
     <section style="text-align: -moz-center;">
+      <h2>{{ name }}</h2>
       <button @click="affichQuestions" class="btn btn-secondary m-1">Afficher les questions</button>
       <input type="button" value="Ajouter une Question" @click="changeModAjout" class="btn btn-warning m-1">
       <div v-if="modAjout">

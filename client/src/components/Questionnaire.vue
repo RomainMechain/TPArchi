@@ -11,7 +11,7 @@
    methods: {
     afficheQuestions : function() {
         console.log(this.questionnaire.url);    
-        this.$emit('afficheQuest', {url: this.questionnaire.url, id: this.questionnaire.id});
+        this.$emit('afficheQuest', {url: this.questionnaire.url, id: this.questionnaire.id, name: this.questionnaire.name});
     },
     changeMod : function() {
       this.modEdit = !this.modEdit;

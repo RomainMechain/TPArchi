@@ -49,7 +49,7 @@
       <p v-if="question.questionType === 'MultipleQuestion' && this.detail">Options : {{ question.options }}</p>
       <p v-if="this.detail">Réponse : {{ question.reponse }}</p>
       <input type="button" value="Supprimer" @click="supprimerQuestion" class="btn btn-danger m-1">
-      <input type="button" value="Modifier" @click="changeModEdit">
+      <input type="button" value="Modifier" @click="changeModEdit" class="btn btn-info m-1">
     </div> 
     <div v-else>
       <input type="text" v-model="question.title">

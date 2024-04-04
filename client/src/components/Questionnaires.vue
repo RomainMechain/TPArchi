@@ -19,7 +19,7 @@ export default {
     },
     afficheQuestions : function($event) {
       console.log(this.url);
-      this.$emit('afficheQuest', {url: $event.url, id: $event.id});
+      this.$emit('afficheQuest', {url: $event.url, id: $event.id, name: $event.name});
     },
     ajouterQuestionnaire : function() {
       fetch('http://localhost:5000/quiz/api/v1.0/quiz', {

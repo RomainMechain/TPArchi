@@ -7,6 +7,7 @@ let data={
   questions:false,
   urlQuest:"",
   idQuest:"",
+  nameQuest:"",
   operations:false,
 
 }
@@ -22,6 +23,7 @@ export default{
       this.questions=true;
       this.urlQuest=$event.url;
       this.idQuest=$event.id;
+      this.nameQuest=$event.name;
       console.log($event);
     },
   }
@@ -40,7 +42,7 @@ export default{
   </div>
   <div class="col lg-6">
     <h2>Questions : </h2>
-    <Questions v-if="this.questions" :url="this.urlQuest" :idQuestionnaire="this.idQuest"></Questions>
+    <Questions v-if="this.questions" :url="this.urlQuest" :idQuestionnaire="this.idQuest" :name="this.nameQuest"></Questions>
   </div>
 </div>
   
