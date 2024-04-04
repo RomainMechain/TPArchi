@@ -142,6 +142,8 @@ def add_question_db(title, questionType, reponse, questionnaire_id, option=False
     session.add(q1)
     session.commit()
     session.close()
+    id_json = get_last_question_id()
+    return id_json
     
 def set_name_questionnaire(name, questionnaire_id):
     Session = sessionmaker(bind=db.engine)
@@ -180,5 +182,12 @@ def delete_question_bd(question_id) :
     session.delete(question)
     session.commit()
     session.close()
+
+def get_last_question_id() :
+    Session = sessionmaker(bind=db.engine)
+    session = Session()
+    res = session.query(Question).order_by(Question.id.desc()).first()
+    session.close()
+    return res.to_json()
 
     
