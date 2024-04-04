@@ -33,16 +33,17 @@ export default{
   <header>
     <h1>{{ title }}</h1>
   </header>
-  <div class="questionnaires">
+  <div class="row">
+  <div class="col lg-6">
     <h2>Questionnaires : </h2>
     <Questionnaires @afficheQuest="afficherQuestions"></Questionnaires>
   </div>
-  <div class="questions">
+  <div class="col lg-6">
     <h2>Questions : </h2>
     <Questions v-if="this.questions" :url="this.urlQuest" :idQuestionnaire="this.idQuest"></Questions>
   </div>
-  <div class="operations">
-  </div>
+</div>
+  
 </template>
 
 

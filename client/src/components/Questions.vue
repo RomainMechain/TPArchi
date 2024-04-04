@@ -94,22 +94,22 @@ import Question from './Question.vue';
 </script>
 
 <template>
-    <section>
-      <button @click="affichQuestions">Afficher les questions</button>
-      <input type="button" value="Ajouter une Question" @click="changeModAjout">
+    <section style="text-align: -moz-center;">
+      <button @click="affichQuestions" class="btn btn-secondary m-1">Afficher les questions</button>
+      <input type="button" value="Ajouter une Question" @click="changeModAjout" class="btn btn-warning m-1">
       <div v-if="modAjout">
-        <input type="text" placeholder="Nom de la question" v-model="nomNewQuest">
-        <select v-model="typeNewQuest">
+        <input type="text" placeholder="Nom de la question" v-model="nomNewQuest" class="col-form-label border-2 rounded m-3 ">
+        <select v-model="typeNewQuest" class="form-select m-1" style="width: auto;">
           <option value="SimpleQuestion">SimpleQuestion</option>
           <option value="MultipleQuestion">MultipleQuestion</option>
         </select>
-        <input v-if="typeNewQuest === 'MultipleQuestion'" type="text" placeholder="Options" v-model="optionsNewQuest">
-        <input type="text" placeholder="Réponse" v-model="reponseNewQuest">
-        <input type="button" value="Valider" @click="ajouterQuestion">
+        <input v-if="typeNewQuest === 'MultipleQuestion'" type="text" placeholder="Options" v-model="optionsNewQuest" class="col-form-label border-2 rounded mt-4 m-1">
+        <input type="text" placeholder="Réponse" v-model="reponseNewQuest" class="col-form-label border-2 rounded mt-4 m-1">
+        <input type="button" value="Valider" @click="ajouterQuestion" class="btn btn-success m-1">
       </div>
-        <ul>
+        <ul style="list-style-type: none;">
             <li v-for="quest in questions">
-                <Question :question="quest" @supprQuest="supprimerQuestion"></Question>
+                <Question :question="quest" @supprQuest="supprimerQuestion" ></Question>
             </li>
         </ul>
     </section>

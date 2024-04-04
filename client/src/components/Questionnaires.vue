@@ -63,12 +63,12 @@ import Questionnaire from './Questionnaire.vue';
 
 <template>
     <section>
-        <button @click="affichQuestionnaires">Afficher les questionnaires</button>
-        <ul>
+        <button @click="affichQuestionnaires" class="btn btn-primary m-1">Afficher les questionnaires</button>
+        <ul style="list-style-type: none;">
             <li v-for="quest in questionnaires">
                 <Questionnaire :questionnaire="quest" @afficheQuest="afficheQuestions" @editQuest="editQuestionnaire" @supprQuest="supprimerQuestionnaire"></Questionnaire>
             </li>
         </ul>
-        <input type="text" v-model="newQuestionnaire" placeholder="Ajouter un nouveau questionnaire" @keyup.enter="ajouterQuestionnaire">
+        <input type="text" v-model="newQuestionnaire" placeholder="Ajouter un nouveau questionnaire" @keyup.enter="ajouterQuestionnaire" class="col-form-label border-2 rounded mt-4">
     </section>
 </template>
