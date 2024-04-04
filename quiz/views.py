@@ -52,7 +52,8 @@ def set_question(id) :
     question_id = request.json['id']
     title = request.json['title']
     reponse = request.json['reponse']
-    if 'options' in request.json :
+    typeQuestion = request.json['questionType']
+    if typeQuestion == "MultipleQuestion":
         options = request.json['options']
         return jsonify(set_question_bd(question_id, title, reponse, options))
     else :
