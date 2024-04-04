@@ -11,7 +11,7 @@
    methods: {
     afficheQuestions : function() {
         console.log(this.questionnaire.url);    
-        this.$emit('afficheQuest', {url: this.questionnaire.url});
+        this.$emit('afficheQuest', {url: this.questionnaire.url, id: this.questionnaire.id});
     },
     changeMod : function() {
       this.modEdit = !this.modEdit;
@@ -30,12 +30,12 @@
 
 <template>
   <div v-if="!modEdit">
-    <h1 @click="afficheQuestions">{{ questionnaire.name }}</h1>
-    <input type="button" value="Modifier" @click="changeMod">
-    <input type="button" value="Supprimer" @click="supprimerQuestionnaire">
+    <h3 @click="afficheQuestions">{{ questionnaire.name }}</h3>
+    <input type="button" value="Modifier" @click="changeMod" class="btn btn-info m-1">
+    <input type="button" value="Supprimer" @click="supprimerQuestionnaire" class="btn btn-danger m-1">
   </div>
   <div v-else>
-    <input type="text" v-model="questionnaire.name">
-    <input type="button" value="Valider" @click="editQuestionnaire">
+    <input type="text" v-model="questionnaire.name" class="col-form-label border-2 rounded m-1 mt-4">
+    <input type="button" value="Valider" @click="editQuestionnaire" class="btn btn-success m-1">
   </div>
 </template>

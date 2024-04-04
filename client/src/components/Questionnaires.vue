@@ -19,7 +19,7 @@ export default {
     },
     afficheQuestions : function($event) {
       console.log(this.url);
-      this.$emit('afficheQuest', {url: $event.url});
+      this.$emit('afficheQuest', {url: $event.url, id: $event.id});
     },
     ajouterQuestionnaire : function() {
       fetch('http://localhost:5000/quiz/api/v1.0/quiz', {
@@ -63,12 +63,12 @@ import Questionnaire from './Questionnaire.vue';
 
 <template>
     <section>
-        <button @click="affichQuestionnaires">Afficher les questionnaires</button>
-        <ul>
+        <button @click="affichQuestionnaires" class="btn btn-primary m-1">Afficher les questionnaires</button>
+        <ul style="list-style-type: none;">
             <li v-for="quest in questionnaires">
                 <Questionnaire :questionnaire="quest" @afficheQuest="afficheQuestions" @editQuest="editQuestionnaire" @supprQuest="supprimerQuestionnaire"></Questionnaire>
             </li>
         </ul>
-        <input type="text" v-model="newQuestionnaire" placeholder="Ajouter un nouveau questionnaire" @keyup.enter="ajouterQuestionnaire">
+        <input type="text" v-model="newQuestionnaire" placeholder="Ajouter un nouveau questionnaire" @keyup.enter="ajouterQuestionnaire" class="col-form-label border-2 rounded mt-4">
     </section>
 </template>
