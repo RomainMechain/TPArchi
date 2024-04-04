@@ -63,17 +63,26 @@ export default {
           reponse: this.reponseNewQuest
         })
       })
-      if (this.typeNewQuest === 'MultipleQuestion') {
-        this.questions.push({title: this.nomNewQuest, questionType: this.typeNewQuest, options: this.optionsNewQuest, reponse: this.reponseNewQuest});
-      }
-      else {
-        this.questions.push({title: this.nomNewQuest, questionType: this.typeNewQuest, reponse: this.reponseNewQuest});
-      }
-      this.nomNewQuest = '';
-      this.typeNewQuest = 'SimpleQuestion';
-      this.optionsNewQuest = '';
-      this.reponseNewQuest = '';
-      this.changeModAjout();
+      .then(response => response.json())
+      .then(data => {
+        console.log(this.nomNewQuest, this.typeNewQuest, this.optionsNewQuest, this.reponseNewQuest, data.id);
+        if (this.typeNewQuest === 'MultipleQuestion') {
+          this.questions.push({title: this.nomNewQuest, questionType: this.typeNewQuest, options: this.optionsNewQuest, reponse: this.reponseNewQuest, id: data.id});
+          this.nomNewQuest = '';
+          this.typeNewQuest = 'SimpleQuestion';
+          this.optionsNewQuest = '';
+          this.reponseNewQuest = '';
+          this.changeModAjout();
+        }
+        else {
+          this.questions.push({title: this.nomNewQuest, questionType: this.typeNewQuest, reponse: this.reponseNewQuest, id: data.id});
+          this.nomNewQuest = '';
+          this.typeNewQuest = 'SimpleQuestion';
+          this.optionsNewQuest = '';
+          this.reponseNewQuest = '';
+          this.changeModAjout();
+        }
+      });
     }
     
   },
