@@ -15,6 +15,7 @@ flask run
 - On se met après dans un autre terminal pour lancer le client : 
 
 ```bash
+cd client/
 npm install
 npm run dev --host
 ```
